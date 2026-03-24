@@ -1,0 +1,49 @@
+services:
+  # ─────────────────────────────────────────────
+  # apt-cacher-ng — caché de paquetes APT
+  # Incluye unbound como DNS cache interno (127.0.0.1).
+  #
+  # Red:
+  #   - host_bridge (192.168.3.0/30): host ↔ contenedor
+  #   - port mapping (:3142): VMs ↔ contenedor
+  #     Las VMs acceden via la IP del Proxmox host.
+  # ─────────────────────────────────────────────
+  apt-cacher-ng:
+    build:
+      context: ./apt-cacher-ng
+      network: host
+    container_name: apt-cacher-ng
+    security_opt:
+      - apparmor=unconfined
+    dns:
+      - 127.0.0.1
+    ports:
+      - "3142:3142"
+    volumes:
+      - ${CACHE_PATH}:/var/cache/apt-cacher-ng
+    networks:
+      host_bridge:
+        ipv4_address: 192.168.3.2
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://127.0.0.1:3142"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+# ═══════════════════════════════════════════════
+# REDES
+# ═══════════════════════════════════════════════
+networks:
+  # ─────────────────────────────────────────────
+  # host_bridge: bridge user-defined para el host
+  # El host accede al contenedor via 192.168.3.2:3142
+  # docker0 está deshabilitado (bridge: none en daemon.json)
+  # — esta es la única red bridge del host.
+  # ─────────────────────────────────────────────
+  host_bridge:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.3.0/30
+          gateway: 192.168.3.1

@@ -1,0 +1,14 @@
+# Docker
+.env
+docker/.env
+
+# Logs y Temporales
+*.log
+/mnt/apt-cache/*
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Git
+.git/

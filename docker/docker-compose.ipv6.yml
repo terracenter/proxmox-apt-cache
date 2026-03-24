@@ -1,0 +1,34 @@
+# ============================================
+# Override para nodos dual-stack (IPv4 + IPv6)
+# ============================================
+# Usar junto con docker-compose.yml:
+#
+#   docker compose \
+#     -f docker-compose.yml \
+#     -f docker-compose.ipv6.yml \
+#     up -d
+#
+# Requiere en .env las variables IPv6:
+#   MACVLAN_SUBNET_V6
+#   MACVLAN_GATEWAY_V6
+#   MACVLAN_IP_V6
+# ============================================
+
+services:
+  apt-cacher-ng:
+    networks:
+      macvlan_vms:
+        ipv4_address: ${MACVLAN_IP}
+        ipv6_address: ${MACVLAN_IP_V6}
+
+networks:
+  macvlan_vms:
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: ${MACVLAN_SUBNET}
+          gateway: ${MACVLAN_GATEWAY}
+          ip_range: ${MACVLAN_IP}/32
+        - subnet: ${MACVLAN_SUBNET_V6}
+          gateway: ${MACVLAN_GATEWAY_V6}
+          ip_range: ${MACVLAN_IP_V6}/128
