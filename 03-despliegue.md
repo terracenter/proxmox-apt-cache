@@ -2,10 +2,10 @@
 
 ## 3.1 Preparar el directorio de trabajo
 
-Clona el repositorio oficial en el host Proxmox y prepara el directorio de despliegue:
+> El repositorio `proxmox-apt-cache` es el proyecto público que contiene los archivos Docker de este manual. Está publicado separadamente en GitHub para facilitar el despliegue en cualquier nodo.
 
 ```bash
-# 1. Clonar el repositorio
+# 1. Clonar el repositorio del proyecto
 git clone https://github.com/terracenter/proxmox-apt-cache.git
 cd proxmox-apt-cache
 
@@ -38,14 +38,36 @@ sudo ufw allow from $VMBR0_NET to any port 3142 proto tcp comment 'APT Proxy des
 sudo ufw status verbose
 ```
 
-## 3.4 Construir y desplegar
+## 3.4 Configurar credenciales del panel de administración
+
+Antes de construir la imagen, establecer la contraseña para `/acng-report.html`.
+Editar `docker/apt-cacher-ng/acng.conf` y cambiar la línea `AdminAuth`:
+
+```bash
+sudo vim /opt/apt-cache/apt-cacher-ng/acng.conf
+```
+
+Buscar y reemplazar:
+```
+AdminAuth: admin:CAMBIAR_ESTA_CLAVE
+```
+
+Por:
+```
+AdminAuth: admin:tu_contraseña_segura
+```
+
+> La contraseña protege solo la interfaz web de reportes y administración.
+> Las descargas de paquetes (`apt update`, `apt install`) **no requieren** autenticación.
+
+## 3.5 Construir y desplegar
 
 ```bash
 cd /opt/apt-cache
 sudo docker compose up -d --build
 ```
 
-## 3.5 Verificar estado
+## 3.6 Verificar estado
 
 ```bash
 sudo docker compose ps
@@ -53,7 +75,7 @@ sudo docker exec apt-cacher-ng ip addr
 sudo docker exec apt-cacher-ng pgrep -a unbound
 ```
 
-## 3.6 Probar conectividad local
+## 3.7 Probar conectividad local
 
 ```bash
 curl -s http://192.168.3.2:3142 | head -5

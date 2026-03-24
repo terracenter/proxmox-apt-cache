@@ -94,6 +94,7 @@ para que `apt-cacher-ng` resuelva nombres de repositorios.
 - Espacio en el VG `pve` para un volumen LVM (mínimo 20 GB)
 - Docker CE instalado en el Proxmox host
 - FreeIPA configurado como DNS en las VMs
+- **UFW instalado y configurado** — REQUISITO de seguridad obligatorio antes del despliegue. Ver [Guía de Firewall](../../Seguridad/01.Firewall.md)
 
 ## Guía Paso a Paso
 

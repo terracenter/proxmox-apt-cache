@@ -54,12 +54,13 @@ sudo docker run --rm hello-world
 
 ## 2.6 Configurar daemon.json
 
-> ⚠️ **¡ADVERTENCIA IMPORTANTE!** ⚠️  
-> El parámetro `"bridge": "none"` deshabilita la interfaz predeterminada `docker0`. Si el host ya tiene otros contenedores en funcionamiento, estos perderán su conectividad a menos que se les asigne una red de forma explícita en su `docker-compose.yml`.
+> **Por qué se deshabilita `docker0`:** La red bridge por defecto de Docker usa `172.17.0.0/16`, un rango que frecuentemente entra en conflicto con redes de servidores en producción. Deshabilitar `docker0` y definir redes explícitas en cada `docker-compose.yml` elimina ese conflicto y da control total sobre el direccionamiento.
+
+> ⚠️ **Si ya tienes otros contenedores corriendo en este host:** Al deshabilitar `docker0`, perderán conectividad si dependen de la red por defecto. Antes de aplicar este cambio, verifica que cada `docker-compose.yml` existente defina su propia red con `driver: bridge`. Casi ningún despliegue de producción usa la red por defecto, pero es necesario confirmarlo.
 
 ```bash
 sudo tee /etc/docker/daemon.json << 'EOF'
-...{
+{
   "bridge": "none",
   "iptables": true,
   "log-driver": "json-file",
@@ -76,6 +77,7 @@ sudo systemctl restart docker
 Verificar que docker0 ya no existe:
 ```bash
 sudo ip -br a | grep docker
+# Sin salida = correcto. docker0 eliminado.
 ```
 
 ## 2.7 Habilitar Docker en el arranque
