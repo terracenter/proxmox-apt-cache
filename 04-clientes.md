@@ -117,4 +117,4 @@ sudo mv /etc/apt/apt.conf.d/01proxy.disabled /etc/apt/apt.conf.d/01proxy
 
 ---
 
-[⬅️ Anterior](03-despliegue.md) | [🏠 Inicio](index.md) | [📚 Manuales](../index.md)
+[⬅️ Anterior](03-despliegue.md) | [🏠 Inicio](../../README.md) | [📚 Manuales](../../README.md)

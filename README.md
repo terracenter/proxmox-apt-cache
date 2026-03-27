@@ -176,4 +176,4 @@ graph TB
 ```
 
 ---
-[🏠 Inicio](index.md) | [Siguiente ➡️](01-lvm-cache.md) | [📚 Manuales](../index.md)
+[🏠 Inicio](../../README.md) | [Siguiente ➡️](01-lvm-cache.md) | [📚 Manuales](../../README.md)

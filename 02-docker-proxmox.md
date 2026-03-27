@@ -88,4 +88,4 @@ sudo systemctl status docker
 ```
 
 ---
-[⬅️ Anterior](01-lvm-cache.md) | [🏠 Inicio](index.md) | [Siguiente ➡️](03-despliegue.md) | [📚 Manuales](../index.md)
+[⬅️ Anterior](01-lvm-cache.md) | [🏠 Inicio](../../README.md) | [Siguiente ➡️](03-despliegue.md) | [📚 Manuales](../../README.md)
