@@ -108,4 +108,4 @@ sudo lvextend -L +100G lvm-data/data
 ```
 
 ---
-[⬅️ Anterior](README.md) | [🏠 Inicio](../../README.md) | [Siguiente ➡️](02-docker-proxmox.md) | [📚 Manuales](../../README.md)
+[⬅️ Anterior](README.md) | [🏠 Inicio](index.md) | [Siguiente ➡️](02-docker-proxmox.md) | [📚 Manuales](../../README.md)

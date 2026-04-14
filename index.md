@@ -22,7 +22,6 @@
 - Proxmox VE 7.x / 8.x
 - 20 GB+ libres en el VG `pve`
 - Firewall UFW activo (Configuración de acceso incluida en el paso 03)
-
 ---
 
-[🏠 Inicio](../../README.md) | [Siguiente ➡️](README.md) | [📚 Manuales](../../README.md)
+[🏠 Inicio](../index.md) | [📚 Manuales](../../README.md)

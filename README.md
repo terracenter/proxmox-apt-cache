@@ -177,3 +177,6 @@ graph TB
 
 ---
 [🏠 Inicio](../../README.md) | [Siguiente ➡️](01-lvm-cache.md) | [📚 Manuales](../../README.md)
+---
+
+[🏠 Inicio](../index.md) | [📚 Manuales](../../README.md)

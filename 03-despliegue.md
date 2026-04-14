@@ -82,4 +82,4 @@ curl -s http://192.168.3.2:3142 | head -5
 ```
 
 ---
-[⬅️ Anterior](02-docker-proxmox.md) | [🏠 Inicio](../../README.md) | [Siguiente ➡️](04-clientes.md) | [📚 Manuales](../../README.md)
+[⬅️ Anterior](02-docker-proxmox.md) | [🏠 Inicio](index.md) | [Siguiente ➡️](04-clientes.md) | [📚 Manuales](../../README.md)
